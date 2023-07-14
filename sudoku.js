@@ -1,6 +1,9 @@
 const { log } = require("console");
 const readAndSolve = require("./readAndSolve");
 const fs = require("fs");
+
+
+
 const boardString1 = fs.readFileSync("./puzzles.txt", "utf-8");
 
 const boardStringArr = boardString1.split("\n");
@@ -21,7 +24,7 @@ function solve(boardString) {
   return arrSudoku;
   // findEmpty(solve);
 }
-let funct = solve(boardStringArr[0]);
+let funct = solve(boardStringArr[process.argv[2]-1]);
 // console.log(funct);
 function findEmpty(funct) {
   for (let i = 0; i < funct.length; i++) {
