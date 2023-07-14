@@ -12,14 +12,28 @@ const boardStringArr = boardString1.split("\n");
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 function solve(boardString) {
-   const arrSudoku = []
-   for(let i = 0; i <= boardString.length - 1; i += 9) {
-      const arr = boardString.slice(i, i + 9).split('')
-      arrSudoku.push(arr)
-   }
-   return arrSudoku;
+  const arrSudoku = [];
+  for (let i = 0; i <= boardString.length - 1; i += 9) {
+    const arr = boardString.slice(i, i + 9).split("");
+    arrSudoku.push(arr);
+  }
+  console.table(arrSudoku);
+  return arrSudoku;
+  // findEmpty(solve);
 }
-solve(boardStringArr[0])
+let funct = solve(boardStringArr[0]);
+// console.log(funct);
+function findEmpty(funct) {
+  for (let i = 0; i < funct.length; i++) {
+    for (let j = 0; j < funct[i].length; j++) {
+      if (funct[i][j] === "-") {
+        return [i, j];
+      }
+    }
+  }
+  return null;
+}
+console.log(findEmpty(funct));
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
@@ -32,7 +46,10 @@ function isSolved(board) {}
  * Возвращает строку с игровым полем для последующего вывода в консоль.
  * Подумай, как симпатичнее сформировать эту строку.
  */
-function prettyBoard(board) {}
+function prettyBoard(board) {
+  const size = 4;
+  const boxSize = 2;
+}
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
