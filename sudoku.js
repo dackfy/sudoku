@@ -17,7 +17,7 @@ function solve(boardString) {
     const arr = boardString.slice(i, i + 9).split("");
     arrSudoku.push(arr);
   }
-  console.table(arrSudoku);
+  // console.table(arrSudoku);
   return arrSudoku;
   // findEmpty(solve);
 }
@@ -33,23 +33,58 @@ function findEmpty(funct) {
   }
   return null;
 }
-console.log(findEmpty(funct));
+// console.log(findEmpty(funct));
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
- */
-function isSolved(board) {}
-
+*/
+let empty1 = findEmpty(funct)
+let [i, j] = empty1
+// console.log(empty);
+// function isSolved(num, empty1, funct) {
+//   if(empty1 === null) {
+//     return true
+//   } 
+//   for(let k = 1; k < empty1.length; k += 1) {
+//     if(funct[k][j] === num && k !== i) {
+//       return false
+//     }
+//   } 
+//   for(let k = 1; k < empty1.length; k += 1) {
+//     if(funct[i][k] === num && k !== j) {
+//       return false
+//     }
+//   } 
+// }
+let board = funct
+function isSolved(board) {
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      if (board[i][j] === "-") {
+        return false; // If any cell is empty, the puzzle is not solved
+      }
+    }
+  }
+  return true; // All cells are filled, the puzzle is solved
+}
+console.log(isSolved(boardStringArr))
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает строку с игровым полем для последующего вывода в консоль.
  * Подумай, как симпатичнее сформировать эту строку.
  */
 function prettyBoard(board) {
-  const size = 4;
-  const boxSize = 2;
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      if (board[i][j] === "-") {
+        board[i][j] = " "; // Replace empty cells with spaces for better formatting
+      }
+    }
+  }
+  console.table(board)
 }
+console.table(funct)
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
